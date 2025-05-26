@@ -8,11 +8,11 @@
 		<version>3.5.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>unam.aragon</groupId>
-	<artifactId>Peliculasmvc</artifactId>
+	<groupId>test.java.unam.aragon</groupId>
+	<artifactId>Carrosmvc</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Peliculasmvc</name>
-	<description>Demo project for Spring Boot</description>
+	<name>Carrosmvc</name>
+	<description>ProyectoCarrosmvc</description>
 	<url/>
 	<licenses>
 		<license/>
