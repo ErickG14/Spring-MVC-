@@ -2,7 +2,10 @@ package mx.unam.aragon.ico.te.museosmvc.controladores;
 
 
 import mx.unam.aragon.ico.te.museosmvc.modelos.Museo;
+import mx.unam.aragon.ico.te.museosmvc.repositorios.MuseoRepository;
+import mx.unam.aragon.ico.te.museosmvc.servicios.MuseoService;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/buscador")
 public class MuseoController {
+    @Autowired
+    private MuseoService museoService; //importo el servicio, para tener acceso a los métodos como "guardar"
+
     @GetMapping("/museo")
     public String museo(Model model) {
         model.addAttribute("museo", new Museo(1,"Museo de Frida Kahlo", 1958,"Ciudad de México", "Arte",250,"http:algo"));
@@ -22,6 +28,7 @@ public class MuseoController {
     ) {
         LoggerFactory.getLogger(getClass()).info("Guardando Museo " + museo);
         //mandarlo a DB (save) -JPA,ORM
+        museoService.guardarMuseo(museo); //guardo al muso que estoy recuperando
         return "redirect:/buscador/museo?exito";
     }
 
