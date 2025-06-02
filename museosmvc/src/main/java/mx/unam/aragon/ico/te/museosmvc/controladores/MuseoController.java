@@ -32,4 +32,10 @@ public class MuseoController {
         return "redirect:/buscador/museo?exito";
     }
 
+    @GetMapping("/museo/{id}")
+    public String museo(@PathVariable Integer id, Model model) {
+        model.addAttribute("museo",museoService.getMuseo(id));
+        return "formMuseo"; //necesito una nueva
+    }
+
 }

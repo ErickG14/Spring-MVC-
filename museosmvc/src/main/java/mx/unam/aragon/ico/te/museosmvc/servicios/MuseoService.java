@@ -16,4 +16,9 @@ public class MuseoService {
         Museo reult = museoRepository.save(museo);
         return reult != null;  //tambien me puede regresar el objeto creado, o el true false
     }
+
+    public Museo getMuseo(Integer id) {
+        return museoRepository.getById(id);
+    }
+
 }
