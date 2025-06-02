@@ -1,9 +1,18 @@
 package mx.unam.aragon.ico.te.museosmvc.modelos;
 
+import jakarta.persistence.*;
+
 import java.util.Objects;
 
+@Entity //mapeamos esta clase a una tabla en la base de datos
+//@Table(name = "museos")
+//@Column- indica si son únicos, nulos o no, PK, o manda código sql para definir la columna
 public class Museo {
-    private int id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //generacion de clave primaria, autoincrementable-identity
+    private Integer id;
+
     private String nombre;
     private int fundacion;
     private String ubicacion;
