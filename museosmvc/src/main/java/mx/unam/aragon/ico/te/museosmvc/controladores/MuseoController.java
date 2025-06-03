@@ -35,7 +35,7 @@ public class MuseoController {
     @GetMapping("/museo/{id}")
     public String museo(@PathVariable Integer id, Model model) {
         model.addAttribute("museo",museoService.getMuseo(id));
-        return "formMuseo"; //necesito una nueva
+        return "MuseoGuardado";
     }
 
 }

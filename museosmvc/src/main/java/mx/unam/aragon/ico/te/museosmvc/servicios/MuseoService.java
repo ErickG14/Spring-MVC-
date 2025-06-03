@@ -12,13 +12,20 @@ public class MuseoService {
     @Autowired //Inyecto la dependencia
     private MuseoRepository museoRepository;
 
+    //Create -> Guarda los nuevos museos y regresa el mensaje
     public boolean guardarMuseo(Museo museo) {
         Museo reult = museoRepository.save(museo);
         return reult != null;  //tambien me puede regresar el objeto creado, o el true false
     }
 
+    //Read--> Se visualiza en una página nueva la info almacenada en la base de datos (busqueda por ID)
     public Museo getMuseo(Integer id) {
         return museoRepository.getById(id);
     }
+
+    //Update-> Mofifica los datos
+
+
+    //Delete -> Borra info de los museos por ID
 
 }
