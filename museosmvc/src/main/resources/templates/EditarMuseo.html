@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="formMuseo :: head">
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+<nav th:replace="formMuseo :: navbar"></nav>
+
+<div class="container mt-5">
+  <main class="flex-fill">
+      <p class="text-success" th:if="${param.exito}">¡El Museo ha sido editado!</p>
+      <hr>
+      <p>EDITAR</p>
+      <form th:action="@{/buscador/actualizar}" th:object="${museo}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+
+        <label>Nombre:</label> <input type="text" th:field="*{nombre}"/>
+        <label>Fundación(año):</label> <input type="text" th:field="*{fundacion}"/>
+        <label>Ubicación:</label> <input type="text" th:field="*{ubicacion}"/>
+        <label>Tipo:</label> <input type="text" th:field="*{tipo}"/>
+        <label>Precio:</label> <input type="text" th:field="*{precio}"/>
+        <label>Imagen:</label> <input type="text" th:field="*{imagen}"/>
+
+        <button type="submit">Editar</button>
+      </form>
+
+  </main>
+</div>
+
+
+<footer th:replace="formMuseo :: footer"></footer>
+<div th:replace="formMuseo :: jsincludes"></div>
+</body>
+</html>

@@ -38,4 +38,19 @@ public class MuseoController {
         return "MuseoGuardado";
     }
 
+    @GetMapping("/editar/{id}")
+    public String editar(@PathVariable Integer id, Model model) {
+        LoggerFactory.getLogger(getClass()).info("Se edito el museo 'id': " + id);
+        model.addAttribute("museo",museoService.getMuseo(id) );
+        return "EditarMuseo";
+    }
+
+    @PostMapping("/actualizar")
+    public String actualizarMuseo(@ModelAttribute Museo museo) {
+        LoggerFactory.getLogger(getClass()).info("Se actualizo el museo  'id': " + museo.getId());
+        LoggerFactory.getLogger(getClass()).info("Info guardada: " + museo);
+        museoService.actualizarMuseo(museo);
+        return "redirect:/buscador/editar/" + museo.getId() + "?exito";
+    }
+
 }

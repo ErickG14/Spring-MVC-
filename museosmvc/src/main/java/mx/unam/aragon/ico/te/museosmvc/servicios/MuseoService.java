@@ -24,7 +24,13 @@ public class MuseoService {
     }
 
     //Update-> Mofifica los datos
-
+    public boolean actualizarMuseo(Museo museo) {
+        if (museoRepository.existsById(museo.getId())) {
+            museoRepository.save(museo);
+            return true;
+        }
+        return false;
+    }
 
     //Delete -> Borra info de los museos por ID
 
