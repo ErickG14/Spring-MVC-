@@ -2,7 +2,6 @@ package mx.unam.aragon.ico.te.museosmvc.controladores;
 
 
 import mx.unam.aragon.ico.te.museosmvc.modelos.Museo;
-import mx.unam.aragon.ico.te.museosmvc.repositorios.MuseoRepository;
 import mx.unam.aragon.ico.te.museosmvc.servicios.MuseoService;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +34,7 @@ public class MuseoController {
     @GetMapping("/museo/{id}")
     public String museo(@PathVariable Integer id, Model model) {
         model.addAttribute("museo",museoService.getMuseo(id));
-        return "MuseoGuardado";
+        return "VerMuseo";
     }
 
     @GetMapping("/editar/{id}")

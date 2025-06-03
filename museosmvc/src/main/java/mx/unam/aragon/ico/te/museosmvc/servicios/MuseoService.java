@@ -33,5 +33,12 @@ public class MuseoService {
     }
 
     //Delete -> Borra info de los museos por ID
+    public boolean eliminarMuseo(Integer id) {
+        if (museoRepository.existsById(id)) {
+            museoRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
 
 }
