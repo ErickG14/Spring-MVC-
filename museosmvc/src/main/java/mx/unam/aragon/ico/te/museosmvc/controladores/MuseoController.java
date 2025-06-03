@@ -15,12 +15,12 @@ public class MuseoController {
     @Autowired
     private MuseoService museoService; //importo el servicio, para tener acceso a los métodos como "guardar"
 
+    //CREATE
     @GetMapping("/museo")
     public String museo(Model model) {
         model.addAttribute("museo", new Museo(1,"Museo de Frida Kahlo", 1958,"Ciudad de México", "Arte",250,"http:algo"));
         return "formMuseo";
     }
-
     @PostMapping("/guardar") //bitacora del sistema //uso @RequestParam o si no @ModelAttribute->los nombres de los campos del formulariosean iguales a los atributos de la clase
     public String guardar(
             @ModelAttribute Museo museo
@@ -30,26 +30,41 @@ public class MuseoController {
         museoService.guardarMuseo(museo); //guardo al muso que estoy recuperando
         return "redirect:/buscador/museo?exito";
     }
-
+    //READ
     @GetMapping("/museo/{id}")
     public String museo(@PathVariable Integer id, Model model) {
         model.addAttribute("museo",museoService.getMuseo(id));
         return "VerMuseo";
     }
-
+    //UPDATE
     @GetMapping("/editar/{id}")
     public String editar(@PathVariable Integer id, Model model) {
         LoggerFactory.getLogger(getClass()).info("Se edito el museo 'id': " + id);
         model.addAttribute("museo",museoService.getMuseo(id) );
         return "EditarMuseo";
     }
-
     @PostMapping("/actualizar")
-    public String actualizarMuseo(@ModelAttribute Museo museo) {
+    public String actualizar(@ModelAttribute Museo museo) {
         LoggerFactory.getLogger(getClass()).info("Se actualizo el museo  'id': " + museo.getId());
         LoggerFactory.getLogger(getClass()).info("Info guardada: " + museo);
         museoService.actualizarMuseo(museo);
         return "redirect:/buscador/editar/" + museo.getId() + "?exito";
+    }
+
+    //DELETE
+    @GetMapping("/eliminar")
+    public String Formeliminar(Model model) {
+        model.addAttribute("museos", museoService.getTodosLosMuseos());
+        return "EliminarMuseo";
+    }
+    @PostMapping("/delete")
+    public String eliminar(@RequestParam Integer id) {
+        boolean eliminado = museoService.eliminarMuseo(id);
+        if (eliminado) {
+            return "redirect:/buscador/eliminar?eliminado=true";
+        } else {
+            return "redirect:/buscador/eliminar?error=notfound";
+        }
     }
 
 }

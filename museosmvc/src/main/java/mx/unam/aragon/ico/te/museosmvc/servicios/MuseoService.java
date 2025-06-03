@@ -6,6 +6,8 @@ import mx.unam.aragon.ico.te.museosmvc.repositorios.MuseoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 //Servicios esta capa realiza todas las operaciones de la lógica de negocios
 @Service
 public class MuseoService {
@@ -33,6 +35,11 @@ public class MuseoService {
     }
 
     //Delete -> Borra info de los museos por ID
+    public List<Museo> getTodosLosMuseos() {
+        return museoRepository.findAll();
+    }
+
+
     public boolean eliminarMuseo(Integer id) {
         if (museoRepository.existsById(id)) {
             museoRepository.deleteById(id);
