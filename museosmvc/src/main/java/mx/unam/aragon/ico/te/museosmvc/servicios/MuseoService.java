@@ -39,7 +39,6 @@ public class MuseoService {
         return museoRepository.findAll();
     }
 
-
     public boolean eliminarMuseo(Integer id) {
         if (museoRepository.existsById(id)) {
             museoRepository.deleteById(id);
@@ -47,5 +46,4 @@ public class MuseoService {
         }
         return false;
     }
-
 }

@@ -1,6 +1,6 @@
 package mx.unam.aragon.ico.te.museosmvc.controladores;
 
-
+import jakarta.persistence.EntityNotFoundException;
 import mx.unam.aragon.ico.te.museosmvc.modelos.Museo;
 import mx.unam.aragon.ico.te.museosmvc.servicios.MuseoService;
 import org.slf4j.LoggerFactory;
@@ -17,7 +17,7 @@ public class MuseoController {
 
     //CREATE
     @GetMapping("/museo")
-    public String museo(Model model) {
+    public String museos(Model model) {
         model.addAttribute("museo", new Museo(1,"Museo de Frida Kahlo", 1958,"Ciudad de México", "Arte",250,"http:algo"));
         return "formMuseo";
     }
@@ -30,12 +30,20 @@ public class MuseoController {
         museoService.guardarMuseo(museo); //guardo al muso que estoy recuperando
         return "redirect:/buscador/museo?exito";
     }
+
     //READ
-    @GetMapping("/museo/{id}")
-    public String museo(@PathVariable Integer id, Model model) {
-        model.addAttribute("museo",museoService.getMuseo(id));
+    @GetMapping("/buscar")
+    public String museo(@RequestParam(required = false) Integer id, Model model) {
+        if (id != null) {
+            try {
+                model.addAttribute("museoBuscado",museoService.getMuseo(id) );
+            } catch (EntityNotFoundException e) {
+                model.addAttribute("error", "No se encontró el museo con ID " + id);
+            }
+        }
         return "VerMuseo";
     }
+
     //UPDATE
     @GetMapping("/editar/{id}")
     public String editar(@PathVariable Integer id, Model model) {
@@ -66,5 +74,4 @@ public class MuseoController {
             return "redirect:/buscador/eliminar?error=notfound";
         }
     }
-
 }

@@ -9,12 +9,23 @@
 
 <div class="container mt-5">
     <main class="flex-fill">
-        <div class="card" style="width: 18rem;">
-            <img th:src="${museo.imagen}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title" th:text="${museo.nombre}">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+        <h2 class="mb-4">¿Qué museo está buscando?</h2>
+        <form method="get" th:action="@{/buscador/buscar}" class="mb-4">
+            <div class="mb-3">
+                <label for="id" class="form-label">ID del museo:</label>
+                <input type="number" id="id" name="id" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+        <hr>
+        <div th:if="${museoBuscado != null}">
+            <div class="card" style="width: 18rem;">
+                <img th:src="${museoBuscado.imagen}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${museoBuscado.nombre}">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
             </div>
         </div>
     </main>
