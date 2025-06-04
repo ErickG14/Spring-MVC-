@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p th:if="${param.exito}"> Carro dado de alta de forma exitosa !!</p>
+<hr>
+<form th:action="@{/Agencia/guardar}" th:object="${carro}" th:method="post">
+    <label>Marca:</label> <input type="text" name="marca" id="marca" th:field="*{marca}">
+    <label>Modelo:</label> <input type="text" name="modelo" id="modelo" th:field="*{modelo}">
+    <label>Año:</label> <input type="text" name="año" id="año" th:field="*{año}">
+    <label>Version:</label> <input type="text" name="version" id="version" th:field="*{version}">
+    <label>Color:</label> <input type="text" name="color" id="color" th:field="*{color}">
+    <label>Imagen:</label> <input type="text" name="imagen" id="imagen" th:field="*{imagen}">
+
+    <button type="submit" > Enviar </button>
+</form>
+
+</body>
+</html>
