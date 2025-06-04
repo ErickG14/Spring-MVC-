@@ -1,6 +1,7 @@
 package mx.unam.aragon.ico.te.museosmvc.servicios;
 
 
+import jakarta.persistence.EntityNotFoundException;
 import mx.unam.aragon.ico.te.museosmvc.modelos.Museo;
 import mx.unam.aragon.ico.te.museosmvc.repositorios.MuseoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,11 @@ public class MuseoService {
 
     //Read--> Se visualiza en una página nueva la info almacenada en la base de datos (busqueda por ID)
     public Museo getMuseo(Integer id) {
-        return museoRepository.getById(id);
+        return museoRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Museo con ID " + id + " no encontrado"));
+    }
+    public List<Museo> getTodosLosMuseos() {
+        return museoRepository.findAll();
     }
 
     //Update-> Mofifica los datos
@@ -35,10 +40,6 @@ public class MuseoService {
     }
 
     //Delete -> Borra info de los museos por ID
-    public List<Museo> getTodosLosMuseos() {
-        return museoRepository.findAll();
-    }
-
     public boolean eliminarMuseo(Integer id) {
         if (museoRepository.existsById(id)) {
             museoRepository.deleteById(id);

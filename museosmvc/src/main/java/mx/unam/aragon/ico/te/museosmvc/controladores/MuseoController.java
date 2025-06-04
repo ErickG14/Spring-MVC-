@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @Controller
 @RequestMapping("/buscador")
@@ -18,7 +19,7 @@ public class MuseoController {
     //CREATE
     @GetMapping("/museo")
     public String museos(Model model) {
-        model.addAttribute("museo", new Museo(1,"Museo de Frida Kahlo", 1958,"Ciudad de México", "Arte",250,"http:algo"));
+        model.addAttribute("museo", new Museo());
         return "formMuseo";
     }
     @PostMapping("/guardar") //bitacora del sistema //uso @RequestParam o si no @ModelAttribute->los nombres de los campos del formulariosean iguales a los atributos de la clase
@@ -38,17 +39,28 @@ public class MuseoController {
             try {
                 model.addAttribute("museoBuscado",museoService.getMuseo(id) );
             } catch (EntityNotFoundException e) {
-                model.addAttribute("error", "No se encontró el museo con ID " + id);
+                model.addAttribute("error", "No se encontró un museo con ID " + id);
             }
         }
         return "VerMuseo";
     }
 
+    @GetMapping("/buscarTodos")
+    public String mostrarTodosLosMuseos(Model model) {
+        List<Museo> museos = museoService.getTodosLosMuseos();
+        model.addAttribute("todosLosMuseos", museos);
+        return "VerMuseo";
+    }
+
     //UPDATE
-    @GetMapping("/editar/{id}")
-    public String editar(@PathVariable Integer id, Model model) {
-        LoggerFactory.getLogger(getClass()).info("Se edito el museo 'id': " + id);
-        model.addAttribute("museo",museoService.getMuseo(id) );
+    @GetMapping("/editar")
+    public String editar(@RequestParam(name = "id", required = false) Integer id, Model model) {
+        model.addAttribute("museos", museoService.getTodosLosMuseos());
+        if (id != null) {
+            model.addAttribute("museo", museoService.getMuseo(id));
+        } else {
+            model.addAttribute("museo", null); // Oculta el formulario si no se selecciono el museo
+        }
         return "EditarMuseo";
     }
     @PostMapping("/actualizar")
@@ -56,7 +68,7 @@ public class MuseoController {
         LoggerFactory.getLogger(getClass()).info("Se actualizo el museo  'id': " + museo.getId());
         LoggerFactory.getLogger(getClass()).info("Info guardada: " + museo);
         museoService.actualizarMuseo(museo);
-        return "redirect:/buscador/editar/" + museo.getId() + "?exito";
+        return "redirect:/buscador/editar?exito&id=" + museo.getId();
     }
 
     //DELETE
