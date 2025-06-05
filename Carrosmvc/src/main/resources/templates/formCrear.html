@@ -11,26 +11,26 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #cae2ff;
+            background-color: #ffd6d6; /* fondo claro rojo pastel */
         }
 
         .bg-lightblue {
-            background-color: #0857a3 !important;
+            background-color: #a30808 !important; /* rojo oscuro intenso */
         }
 
         .custom-button {
-            background-color: #3a7193;
-            border-color: #0056b3;
+            background-color: #933a3a; /* rojo medio apagado */
+            border-color: #b30000; /* rojo vivo */
             color: white;
         }
 
         .custom-button:hover {
-            background-color: #0857a3;
-            border-color: #003d80;
+            background-color: #a30808; /* rojo oscuro para hover */
+            border-color: #800000; /* rojo oscuro clásico */
         }
 
         .titulo-principal {
-            color: #3a7193;
+            color: #933a3a; /* igual que el botón para mantener coherencia */
             font-weight: 700;
         }
 
@@ -61,8 +61,8 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link active" th:href="@{/Agencia/Crear/}">Registrar</a></li>
                 <li class="nav-item"><a class="nav-link active" th:href="@{/Agencia/vista/}">Buscar</a></li>
-                <li class="nav-item"><a class="nav-link active" th:href="@{/Agencia/editar}">Editar</a></li>
-                <li class="nav-item"><a class="nav-link active" th:href="@{/Agencia/eliminar}">Eliminar</a></li>
+                <li class="nav-item"><a class="nav-link active" th:href="@{/Agencia/modificar/}">Editar</a></li>
+                <li class="nav-item"><a class="nav-link active" th:href="@{/Agencia/borrar/}">Eliminar</a></li>
             </ul>
         </div>
     </div>

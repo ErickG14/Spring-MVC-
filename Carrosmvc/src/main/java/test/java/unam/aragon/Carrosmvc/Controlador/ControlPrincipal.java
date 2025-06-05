@@ -38,7 +38,7 @@ public class ControlPrincipal {
     }
 
     @GetMapping("/buscarTodos")
-    public String mostrarTodosLosMuseos(Model model) {
+    public String mostrarTodosLosCarros(Model model) {
         List<Carro> carros = carroService.getTodo();
         model.addAttribute("TodolosCarros", carros);
         return "VerCarro";
@@ -62,13 +62,13 @@ public class ControlPrincipal {
     }
 
     // Actualizar
-    @GetMapping("/modificar")
+    @GetMapping("/modificar/")
     public String modificar(@RequestParam(name = "id", required = false) Integer id, Model model) {
-        model.addAttribute("carro", carroService.getTodo());
+        model.addAttribute("carross", carroService.getTodo());
         if (id != null) {
             model.addAttribute("carro", carroService.getCarro(id));
         } else {
-            model.addAttribute("carro", null); // Oculta el formulario si no se selecciono el museo
+            model.addAttribute("carroo", null);
         }
         return "formActualizar";
     }
@@ -76,25 +76,25 @@ public class ControlPrincipal {
 
     @PostMapping("/actualizar")
     public String actualizar(@ModelAttribute Carro carro) {
-        LoggerFactory.getLogger(getClass()).info("Se actualizo el museo  'id': " + carro.getId());
+        LoggerFactory.getLogger(getClass()).info("Se actualizo el carro  'id': " + carro.getId());
         LoggerFactory.getLogger(getClass()).info("Info guardada: " + carro);
         carroService.actualizarCarro(carro);
-        return "redirect:/Agencia/modificar?exito&id=" + carro.getId();
+        return "redirect:/Agencia/modificar/?exito&id=" + carro.getId();
     }
 
     // Borrar
-    @GetMapping("/borrar")
+    @GetMapping("/borrar/")
     public String borrar(Model model) {
         model.addAttribute("carros", carroService.getTodo());
-        return "borrar";
+        return "BorrarCarro";
     }
     @PostMapping("/delete")
     public String eliminar(@RequestParam Integer id) {
         boolean eliminado = carroService.eliminarCarro(id);
         if (eliminado) {
-            return "redirect:/Agencia/borrar?eliminado=true";
+            return "redirect:/Agencia/borrar/?eliminado=true";
         } else {
-            return "redirect:/Agencia/borrar?error=notfound";
+            return "redirect:/Agencia/borrar/?error=notfound";
         }
     }
 }
