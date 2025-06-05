@@ -46,7 +46,7 @@ public class VideojuegoController {
     public String mostrarTodosLosVideojuegos(Model model) {
         List<Videojuego> videojuegos = videojuegoService.getTodosLosVideojuegos();
         model.addAttribute("todosLosVideojuegos", videojuegos);
-        return "VerVideojuegos";
+        return "VerVideojuego";
     }
 
     @GetMapping("/editar")
