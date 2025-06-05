@@ -31,7 +31,7 @@
       <div class="card mx-auto h-100 d-flex flex-column shadow" style="width: 18rem; min-height: 360px;">
         <img th:src="${PinturaBuscada.imagen}" class="card-img-top" alt="Imagen" style="height: 200px; object-fit: cover;">
         <div class="card-body d-flex flex-column">
-          <h5 class="card-title" th:text="${PinturaBuscada.marca}">Marca de Carro</h5>
+          <h5 class="card-title" th:text="${PinturaBuscada.marca}">Marca de pintura</h5>
           <p class="card-text">
             <strong>Artista:</strong> <span th:text="${m.artista}"></span><br>
             <strong>Año:</strong> <span th:text="${m.year}"></span><br>
@@ -46,7 +46,7 @@
         <div th:each="pintura : ${TodaslasPinturas}" class="card h-100 d-flex flex-column shadow" style="width: 18rem; min-height: 360px;">
           <img th:src="${pintura.imagen}" class="card-img-top" alt="Imagen" style="height: 200px; object-fit: cover;">
           <div class="card-body d-flex flex-column">
-            <h5 class="card-title" th:text="${pintura.nombre}">Nomrbe de pintura</h5>
+            <h5 class="card-title" th:text="${pintura.nombre}">Nombre de pintura</h5>
             <p class="card-text">
               <strong>Artista:</strong> <span th:text="${m.artista}"></span><br>
               <strong>Año:</strong> <span th:text="${m.year}"></span><br>

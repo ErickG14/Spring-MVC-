@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="formCrear :: head">
     <meta charset="UTF-8">
-    <title>Eliminar Carro</title>
+    <title>Eliminar pintura</title>
 </head>
 <body class="d-flex flex-column min-vh-100">
 <nav th:replace="formCrear :: navbar"></nav>
@@ -19,7 +19,7 @@
                 <div class="card h-100 d-flex flex-column shadow" style="min-height: 360px;">
                     <img th:src="${m.imagen}" class="card-img-top" alt="Imagen" style="height: 200px; object-fit: cover;">
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title" th:text="${m.marca}">Descripcion de pintura</h5>
+                        <h5 class="card-title" th:text="${m.nombre}">Descripcion de pintura</h5>
                         <p class="card-text mb-2">
                             <strong>Artista:</strong> <span th:text="${m.artista}"></span><br>
                             <strong>Año:</strong> <span th:text="${m.year}"></span><br>

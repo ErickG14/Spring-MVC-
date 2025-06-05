@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="formCrear :: head">
-  <title>Modificar Carro</title>
+  <title>Modificar pintura</title>
 </head>
 <body class="d-flex flex-column min-vh-100">
 <nav th:replace="formCrear :: navbar"></nav>
@@ -33,31 +33,31 @@
         <h3 class="text-center titulo-principal mb-3">Editar pintura</h3>
         <div class="card shadow mb-4">
           <div class="card-body">
-            <form th:action="@{/galeria/actualizar}" th:object="${pintura}" method="post">
-              <input type="hidden" th:field="*{id}"/>
+            <form th:action="@{/galeria/actualizar}" th:object="${m.pintura}" method="post">
+              <input type="hidden" th:field="*{m.id}"/>
 
               <div class="mb-3">
-                <label class="form-label">Marca:</label>
-                <input type="text" th:field="*{artista}" class="form-control" required>
+                <label class="form-label">Artista:</label>
+                <input type="text" th:field="*{m.artista}" class="form-control" required>
               </div>
 
               <div class="mb-3">
-                <label class="form-label">Modelo:</label>
-                <input type="text" th:field="*{nombre}" class="form-control" required>
+                <label class="form-label">Nombre:</label>
+                <input type="text" th:field="*{m.nombre}" class="form-control" required>
               </div>
 
               <div class="mb-3">
                 <label class="form-label">Año:</label>
-                <input type="text" th:field="*{año}" class="form-control" required>
+                <input type="text" th:field="*{m.year}" class="form-control" required>
               </div>
 
               <div class="mb-3">
                 <label class="form-label">Imagen (URL):</label>
-                <input type="text" th:field="*{imagen}" class="form-control" required>
+                <input type="text" th:field="*{m.imagen}" class="form-control" required>
               </div>
 
               <div class="d-flex justify-content-center">
-                <button type="submit" class="btn custom-button px-4">Actualizar Carro</button>
+                <button type="submit" class="btn custom-button px-4">Actualizar pintura</button>
               </div>
             </form>
           </div>
