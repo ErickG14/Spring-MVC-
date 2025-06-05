@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="formCrear :: head">
+  <title>Modificar Carro</title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+<nav th:replace="formCrear :: navbar"></nav>
+<div class="container mt-5 mb-4">
+  <main class="flex-fill">
+    <h2 class="text-center fw-bold mb-4" style="color: #933a3a;">¿Qué registro quieres cambiar?</h2>
+    <div th:if="${param.exito}" class="alert alert-success text-center">¡La pintura ha sido editada!</div>
+    <div class="row justify-content-center gx-3 gy-4">
+      <div class="col-sm-6 col-md-4 col-lg-3" th:each="m : ${artistass}">
+        <div class="card h-100 d-flex flex-column shadow" style="min-height: 360px;">
+          <img th:src="${m.imagen}" class="card-img-top" alt="Imagen" style="height: 200px; object-fit: cover;">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title" th:text="${m.nombre}">Nombre de la pintura</h5>
+            <p class="card-text mb-2">
+              <strong>Artista:</strong> <span th:text="${m.artista}"></span><br>
+              <strong>Año:</strong> <span th:text="${m.year}"></span><br>
+              <strong>Nombre:</strong> <span th:text="${m.nombre}"></span><br>
+            </p>
+            <div class="text-center mt-auto">
+              <a th:href="@{/galeria/modificar/(id=${m.id})}" class="btn btn-primary">Editar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center mt-4" th:if="${carro != null}">
+      <div class="col-md-4">
+        <h3 class="text-center titulo-principal mb-3">Editar pintura</h3>
+        <div class="card shadow mb-4">
+          <div class="card-body">
+            <form th:action="@{/galeria/actualizar}" th:object="${pintura}" method="post">
+              <input type="hidden" th:field="*{id}"/>
+
+              <div class="mb-3">
+                <label class="form-label">Marca:</label>
+                <input type="text" th:field="*{artista}" class="form-control" required>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Modelo:</label>
+                <input type="text" th:field="*{nombre}" class="form-control" required>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Año:</label>
+                <input type="text" th:field="*{año}" class="form-control" required>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Imagen (URL):</label>
+                <input type="text" th:field="*{imagen}" class="form-control" required>
+              </div>
+
+              <div class="d-flex justify-content-center">
+                <button type="submit" class="btn custom-button px-4">Actualizar Carro</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<footer th:replace="formCrear :: footer"></footer>
+<div th:replace="formCrear :: jsincludes"></div>
+</body>
+</html>
