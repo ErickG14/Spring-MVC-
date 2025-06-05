@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="formCrear :: head">
+  <meta charset="UTF-8">
+  <title>Vista </title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+<nav th:replace="formCrear :: navbar"></nav>
+
+<div class="container mt-5">
+  <main class="flex-fill mb-5">
+    <h2 class="mb-4 text-center titulo-principal">¿Qué pintura estás buscando?</h2>
+    <div th:if="${error != null}" class="alert alert-danger text-center" role="alert">
+      <p th:text="${error}">Error al buscar pintura</p>
+    </div>
+    <form method="get" th:action="@{/galeria/vista/}" class="mb-4">
+      <div class="mb-3 col-md-4 mx-auto">
+        <label for="id" class="form-label">ID de pintura:</label>
+        <input type="number" id="id" name="id" class="form-control" required>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn custom-button">Buscar</button>
+      </div>
+    </form>
+
+    <form method="get" th:action="@{/galeria/buscarTodos}" class="mb-4 text-center">
+      <button type="submit" class="btn btn-secondary">Mostrar todos los registros</button>
+    </form>
+
+    <div th:if="${PinturaBuscada != null}">
+      <div class="card mx-auto h-100 d-flex flex-column shadow" style="width: 18rem; min-height: 360px;">
+        <img th:src="${PinturaBuscada.imagen}" class="card-img-top" alt="Imagen" style="height: 200px; object-fit: cover;">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title" th:text="${PinturaBuscada.marca}">Marca de pintura</h5>
+          <p class="card-text">
+            <strong>Artista:</strong> <span th:text="${m.artista}"></span><br>
+            <strong>Año:</strong> <span th:text="${m.year}"></span><br>
+            <strong>Nombre:</strong> <span th:text="${m.nombre}"></span><br>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div th:if="${TodaslasPinturas!= null}">
+      <div class="d-flex flex-wrap justify-content-center gap-4">
+        <div th:each="pintura : ${TodaslasPinturas}" class="card h-100 d-flex flex-column shadow" style="width: 18rem; min-height: 360px;">
+          <img th:src="${pintura.imagen}" class="card-img-top" alt="Imagen" style="height: 200px; object-fit: cover;">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title" th:text="${pintura.nombre}">Nombre de pintura</h5>
+            <p class="card-text">
+              <strong>Artista:</strong> <span th:text="${m.artista}"></span><br>
+              <strong>Año:</strong> <span th:text="${m.year}"></span><br>
+              <strong>Nombre:</strong> <span th:text="${m.nombre}"></span><br>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<footer th:replace="formCrear :: footer"></footer>
+<div th:replace="formCrear :: jsincludes"></div>
+</body>
+</html>
