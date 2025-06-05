@@ -23,7 +23,7 @@ public class PeliculaService {
                 .orElseThrow(() -> new EntityNotFoundException("Pelicula con ID " + id + " no encontrada"));
     }
 
-    public List<Pelicula> getTodosLasPeliculas() {
+    public List<Pelicula> getTodasLasPeliculas() {
         return peliculaRepository.findAll();
     }
 

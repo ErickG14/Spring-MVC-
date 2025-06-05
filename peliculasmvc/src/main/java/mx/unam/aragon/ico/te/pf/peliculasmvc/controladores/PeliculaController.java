@@ -39,19 +39,19 @@ public class PeliculaController {
                 model.addAttribute("error", "No se encontró una pelicula con ID " + id);
             }
         }
-        return "VerPelicula";
+        return "VerPeliculas";
     }
 
     @GetMapping("/buscarTodos")
     public String mostrarTodasLasPeliculas(Model model) {
-        List<Pelicula> peliculas = peliculaService.getTodosLasPeliculas();
+        List<Pelicula> peliculas = peliculaService.getTodasLasPeliculas();
         model.addAttribute("todasLasPeliculas", peliculas);
         return "VerPeliculas";
     }
 
     @GetMapping("/editar")
     public String editar(@RequestParam(name = "id", required = false) Integer id, Model model) {
-        model.addAttribute("peliculas", peliculaService.getTodosLasPeliculas());
+        model.addAttribute("peliculas", peliculaService.getTodasLasPeliculas());
         if (id != null) {
             model.addAttribute("pelicula", peliculaService.getPelicula(id));
         } else {
@@ -70,7 +70,7 @@ public class PeliculaController {
 
     @GetMapping("/eliminar")
     public String Formeliminar(Model model) {
-        model.addAttribute("peliculas", peliculaService.getTodosLasPeliculas());
+        model.addAttribute("peliculas", peliculaService.getTodasLasPeliculas());
         return "EliminarPelicula";
     }
     @PostMapping("/delete")

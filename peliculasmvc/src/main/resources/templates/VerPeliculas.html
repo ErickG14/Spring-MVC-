@@ -42,7 +42,7 @@
             </div>
         </div>
 
-        <div th:if="${todoasLasPeliculas != null}">
+        <div th:if="${todasLasPeliculas != null}">
             <div class="d-flex flex-wrap justify-content-center gap-4">
                 <div th:each="pelicula : ${todasLasPeliculas}" class="card h-100 d-flex flex-column shadow" style="width: 18rem; min-height: 360px;">
                     <img th:src="${pelicula.imagen}" class="card-img-top" alt="Imagen de la pelicula" style="height: 200px; object-fit: cover;">
