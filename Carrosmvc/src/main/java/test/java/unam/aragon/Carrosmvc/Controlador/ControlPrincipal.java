@@ -24,7 +24,7 @@ public class ControlPrincipal {
         return "index";
     }
 
-    // Vista - modificar
+    // Vista
     @GetMapping("/vista/")
     public String Vista(@RequestParam(required = false) Integer id, Model model) {
         if (id != null) {
