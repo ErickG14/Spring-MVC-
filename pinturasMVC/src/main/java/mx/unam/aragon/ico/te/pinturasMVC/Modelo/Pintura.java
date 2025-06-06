@@ -5,23 +5,25 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Pinturas")
+@Table(name = "galeria")
 public class Pintura {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String artista;
-
     private String nombre;
-    private int year;
+    private int yearLol;
     private String imagen;
 
     public Pintura() {
     }
 
-    public Pintura(Integer id, String artista, String nombre, int year, String imagen) {
+    public Pintura(Integer id, String artista, String nombre, int yearLol, String imagen) {
         this.id = id;
         this.artista = artista;
         this.nombre = nombre;
-        this.year = year;
+        this.yearLol = yearLol;
         this.imagen = imagen;
     }
 
@@ -49,12 +51,12 @@ public class Pintura {
         this.nombre = nombre;
     }
 
-    public int getYear() {
-        return year;
+    public int getYearLol() {
+        return yearLol;
     }
 
-    public void setYear(int year) {
-        this.year = year;
+    public void setYearLol(int yearLol) {
+        this.yearLol = yearLol;
     }
 
     public String getImagen() {
@@ -71,20 +73,20 @@ public class Pintura {
                 "id=" + id +
                 ", artista='" + artista + '\'' +
                 ", nombre='" + nombre + '\'' +
-                ", year=" + year +
+                ", year=" + yearLol +
                 ", imagen='" + imagen + '\'' +
                 '}';
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, artista, nombre, year, imagen);
+        return Objects.hash(id, artista, nombre, yearLol, imagen);
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Pintura pintura = (Pintura) o;
-        return year == pintura.year && Objects.equals(id, pintura.id) && Objects.equals(artista, pintura.artista) && Objects.equals(nombre, pintura.nombre) && Objects.equals(imagen, pintura.imagen);
+        return yearLol == pintura.yearLol && Objects.equals(id, pintura.id) && Objects.equals(artista, pintura.artista) && Objects.equals(nombre, pintura.nombre) && Objects.equals(imagen, pintura.imagen);
     }
 }

@@ -15,7 +15,7 @@ public class PinturaService {
 
     //Crear
 
-    public boolean guardarCarro(Pintura pintura) {
+    public boolean guardarPintura(Pintura pintura) {
         Pintura resultado = pinturaRepository.save(pintura);
         return resultado != null;
     }

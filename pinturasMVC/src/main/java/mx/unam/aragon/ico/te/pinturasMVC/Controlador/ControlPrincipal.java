@@ -48,6 +48,7 @@ public class ControlPrincipal {
     public String pinturas(Model model) {
         model.addAttribute("pintura", new Pintura());
         return "formCrear";
+
     }
 
     @PostMapping("/guardar")
@@ -56,7 +57,7 @@ public class ControlPrincipal {
     ) {
         LoggerFactory.getLogger(getClass()).info("Guardando pintura " + pintura);
         // mandarlo a BD (save)
-        pinturaService.guardarCarro(pintura);
+        pinturaService.guardarPintura(pintura);
         return "redirect:/galeria/Crear/?exito";
     }
 
