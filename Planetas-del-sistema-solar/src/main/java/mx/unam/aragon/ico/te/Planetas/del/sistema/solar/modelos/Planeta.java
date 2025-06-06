@@ -1,10 +1,15 @@
 package mx.unam.aragon.ico.te.Planetas.del.sistema.solar.modelos;
 
-import java.util.Objects;
+import jakarta.persistence.*;
 
+import java.util.Objects;
+@Entity
 public class Planeta {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String nombre;           // Nombre del planeta (ej. Tierra, Marte)
     private double diametro;         // Diámetro en km
     private double masa;             // Masa en kg o múltiplos de la masa terrestre
